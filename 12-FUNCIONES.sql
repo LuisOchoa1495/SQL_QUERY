@@ -10,14 +10,20 @@ Y LAS FUNCIONES SOLO RETORNAN UNA VARIABLE.
 */
 
 use dbalmacen;
+
 delimiter //
-create function modelo_nombre(letra_name char) returns int
+create function modelo_nombre(letra char) returns int
 begin
 	declare numero int;
-    select count(*) into numero from modelo where nombre like concat(letra_name,'%');
-	return numero;
+    select count(*) into numero from modelo 
+    where nombre like 
+    concat(letra,'%');
+    return numero;
 end//
 delimiter ;
 
-select modelo_nombre('S');
+select modelo_nombre('R');
+
+
+
 

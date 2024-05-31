@@ -5,15 +5,17 @@ se ejecutan una serie de instrucciones cuando se producen ciertos eventos sobre 
 -- eventos son: 
 INSERT, UPDATE o DELETE
 */
-
--- crear un trigger
-
-DELIMITER //
-create trigger log_modelo after insert on modelo
-for each row begin
-	insert into acciones_registro(accion) 
-    value (concat('Se ingreso un nuevo registro en modelo: ',NEW.nombre));
+ use dbalmacen;
+ 
+ DELIMITER //
+ create trigger log_modelo after insert on modelo
+ for each row begin
+	insert into registro_acciones(accion)
+	value (concat('Se registro un nuevo modelo: ',
+				NEW.nombre));
 end//
-delimiter ;
+ DELIMITER ;
 
-drop trigger log_modelo;
+
+
+
